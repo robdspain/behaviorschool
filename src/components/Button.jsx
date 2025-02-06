@@ -21,9 +21,10 @@ export const Button = styled.button`
   &:hover {
     background: ${props => props.variant === 'outline' 
       ? props.theme.colors.primary 
-      : props.theme.colors.secondary};
+      : props.theme.colors.earth.forest};
     color: white;
     transform: translateY(-1px);
+    box-shadow: ${props => props.theme.shadows.md};
   }
 
   &:active {
@@ -32,14 +33,14 @@ export const Button = styled.button`
 `;
 
 export const CallToActionButton = styled(Button)`
-  background: ${props => props.theme.colors.success};
-  border-color: ${props => props.theme.colors.success};
+  background: ${props => props.theme.colors.accent};
+  border-color: ${props => props.theme.colors.accent};
   font-size: 1.125rem;
   padding: 1rem 2rem;
   box-shadow: ${props => props.theme.shadows.md};
 
   &:hover {
-    background: ${props => props.theme.colors.success}ee;
-    border-color: ${props => props.theme.colors.success};
+    background: ${props => props.theme.colors.earth.brown};
+    border-color: ${props => props.theme.colors.earth.brown};
   }
 `;

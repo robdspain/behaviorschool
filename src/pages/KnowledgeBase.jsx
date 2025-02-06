@@ -9,26 +9,10 @@ const StyledSection = styled.section`
   padding: 4rem 2rem;
 `;
 
-const IntroSection = styled.div`
-  text-align: center;
-  margin-bottom: 4rem;
-  
-  h1 {
-    color: ${props => props.theme.colors.primary};
-    margin-bottom: 1rem;
-  }
-  
-  p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-`;
-
 const ComparisonTable = styled.div`
   background: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: ${props => props.theme.borderRadius.lg};
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   margin: 3rem 0;
 `;
@@ -38,12 +22,15 @@ const TableHeader = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   padding: 2rem;
-  background: ${props => props.theme.colors.primary};
+  background: #065f46;
   color: white;
   
   h3 {
     margin: 0;
     text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 `;
 
@@ -52,10 +39,14 @@ const TableRow = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   padding: 1.5rem 2rem;
-  border-bottom: 1px solid ${props => props.theme.colors.lightGray};
+  border-bottom: 1px solid ${props => props.theme.colors.neutral.medium};
   
   &:last-child {
     border-bottom: none;
+  }
+
+  &:nth-child(even) {
+    background: ${props => props.theme.colors.neutral.light};
   }
 `;
 
@@ -64,6 +55,24 @@ const ProblemSolution = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   margin: 3rem 0;
+  
+  h2 {
+    font-size: 2.5rem;
+    color: ${props => props.theme.colors.primary};
+    margin-bottom: 2rem;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: ${props => props.theme.colors.accent};
+      border-radius: 2px;
+    }
+  }
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -75,15 +84,46 @@ const List = styled.ul`
   padding: 0;
   
   li {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1rem 1rem 3rem;
     position: relative;
+    background: ${props => props.type === 'problem' 
+      ? props.theme.colors.neutral.light 
+      : '#fff'};
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid ${props => props.type === 'problem' 
+      ? props.theme.colors.earth.sage 
+      : props.theme.colors.primary};
     
     &:before {
       content: "${props => props.type === 'problem' ? '❌' : '✅'}";
       position: absolute;
-      left: 0;
+      left: 1rem;
+      font-size: 1.2rem;
     }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: ${props => props.theme.shadows.md};
+      background: ${props => props.type === 'problem' 
+        ? props.theme.colors.neutral.light 
+        : props.theme.colors.neutral.light};
+    }
+  }
+`;
+
+const SectionContainer = styled.div`
+  padding: 2rem;
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  box-shadow: ${props => props.theme.shadows.md};
+  transition: transform 0.3s ease;
+  border: 1px solid ${props => props.theme.colors.earth.sage};
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: ${props => props.theme.shadows.lg};
   }
 `;
 
@@ -92,6 +132,7 @@ const CenteredContent = styled.div`
   margin-top: 3rem;
 
   h2 {
+    color: ${props => props.theme.colors.primary};
     margin-bottom: 1rem;
   }
 
@@ -100,16 +141,9 @@ const CenteredContent = styled.div`
   }
 `;
 
-const KnowledgeBase = () => {
+function KnowledgeBase() {
   return (
     <StyledSection>
-      <IntroSection>
-        <h1>Behavior School Knowledge Base</h1>
-        <p>
-          Everything You Need to Know Before Booking a Call with Rob Spain, BCBA, IBA
-        </p>
-      </IntroSection>
-
       <h2>What Makes Behavior School Different?</h2>
       <ComparisonTable>
         <TableHeader>
@@ -139,7 +173,7 @@ const KnowledgeBase = () => {
       </ComparisonTable>
 
       <ProblemSolution>
-        <div>
+        <SectionContainer>
           <h2>Common Challenges</h2>
           <List type="problem">
             <li>Teachers ignore behavior plans or push back on implementation</li>
@@ -149,9 +183,9 @@ const KnowledgeBase = () => {
             <li>Resistance from others when trying to implement changes</li>
             <li>Feeling isolated with no real support system in place</li>
           </List>
-        </div>
+        </SectionContainer>
         
-        <div>
+        <SectionContainer>
           <h2>How We Help</h2>
           <List type="solution">
             <li>Structured, easy-to-follow behavior systems that actually get implemented</li>
@@ -161,7 +195,7 @@ const KnowledgeBase = () => {
             <li>Clear framework for conducting functional assessments</li>
             <li>Reduced burnout and increased professional confidence</li>
           </List>
-        </div>
+        </SectionContainer>
       </ProblemSolution>
 
       <CenteredContent>
@@ -173,6 +207,6 @@ const KnowledgeBase = () => {
       </CenteredContent>
     </StyledSection>
   );
-};
+}
 
 export default KnowledgeBase;

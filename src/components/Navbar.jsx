@@ -40,29 +40,29 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  color: ${props => props.theme.colors.text};
+  color: ${props => props.theme.colors.primary};
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   
   &:hover {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.accent};
   }
 `;
 
 const NavButton = styled(Button)`
-  background: ${props => props.theme.colors.success};
-  border-color: ${props => props.theme.colors.success};
+  background: ${props => props.theme.colors.accent};
+  border-color: ${props => props.theme.colors.accent};
   padding: 0.75rem 1.5rem;
   font-weight: 600;
 
   &:hover {
-    background: ${props => props.theme.colors.success}ee;
-    border-color: ${props => props.theme.colors.success};
+    background: ${props => props.theme.colors.earth.brown};
+    border-color: ${props => props.theme.colors.earth.brown};
   }
 `;
 
-const Navbar = () => {
+function Navbar() {
   return (
     <Nav>
       <NavContainer>

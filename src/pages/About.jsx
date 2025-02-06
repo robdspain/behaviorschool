@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CallToActionButton } from '../components/Button';
+import { Link } from 'react-router-dom';
+import { Button } from '../components/Button';
 
 const AboutSection = styled.section`
   max-width: 1200px;
@@ -28,7 +29,7 @@ const ProfileImage = styled.div`
 `;
 
 const Credentials = styled.div`
-  background: ${props => props.theme.colors.lightGray};
+  background: ${props => props.theme.colors.neutral.light};
   padding: 2rem;
   border-radius: 1rem;
   margin: 2rem 0;
@@ -51,7 +52,7 @@ const CredentialsList = styled.ul`
   }
 `;
 
-const About = () => {
+function About() {
   return (
     <AboutSection>
       <h1>About Rob Spain</h1>
@@ -93,13 +94,13 @@ const About = () => {
             <li>Trauma-informed & assent-based behavior strategies</li>
           </CredentialsList>
 
-          <CallToActionButton as="a" href="/book-call">
+          <Button as={Link} to="/book-call">
             Book a Call with Rob
-          </CallToActionButton>
+          </Button>
         </div>
       </ProfileSection>
     </AboutSection>
   );
-};
+}
 
 export default About;
